@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 
 import GamePoster from './game-poster';
 import Cart from './cart'
-
+import Filter from './filter';
 
 export default function Home() {
     const [products, getProducts] = useState([]);
     const [cartItems, getCartItems] = useState([]);
-
     const [counter, setCounter] = useState(0);
+    const [sort, setSort] = useState('');
 
     useEffect(() => {
         fetch('products.json')
@@ -41,13 +41,65 @@ export default function Home() {
         setCounter(cartItems.length - 1);
     }
 
+    const sortByPrice = (event) => {
+        const value = event.target.value;
+
+        const productSorted = products.slice().sort((a, b) => (
+            value === 'lowest' ? 
+            ((a.price > b.price) ? 1:-1) :
+            value === 'highest' ?
+            ((a.price < b.price) ? 1:-1) :
+            ((a.id < b.id) ? 1:-1)
+        ))
+
+        setSort(productSorted)
+        getProducts(productSorted)
+    }
+
+    const sortByPopularity = (event) => {
+        const value = event.target.value;
+
+        const productSorted = products.slice().sort((a, b) => (
+            value === 'lowest' ? 
+            ((a.score > b.score) ? 1:-1) :
+            value === 'highest' ?
+            ((a.score < b.score) ? 1:-1) :
+            ((a.id < b.id) ? 1:-1)
+        ))
+
+        setSort(productSorted)
+        getProducts(productSorted)
+    }
+
+    const sortByAlphabeticOrder = (event) => {
+        const value = event.target.value;
+        console.log(value)
+        const productSorted = products.slice().sort((a, b) => (
+            value === 'alfabetica' ? 
+            a.name.localeCompare(b.name) :
+            a.id < b.id ? 1:-1
+        ));
+
+        setSort(productSorted)
+        getProducts(productSorted)
+    }
+
     return (
             <div>
-                <Cart 
-                    removeFromCart={removeFromCart}
-                    counter={counter}
-                    cartItems={cartItems}
-                />
+                <header>
+                    <Filter 
+                        productsCount={products.length}
+                        sortProducts={sort}
+                        sortByPrice={sortByPrice}
+                        sortByPopularity={sortByPopularity}
+                        sortByAlphabeticOrder={sortByAlphabeticOrder}
+                    />
+                    <Cart 
+                        removeFromCart={removeFromCart}
+                        counter={counter}
+                        cartItems={cartItems}
+                    />
+                </header>
 
                 {
                     products.map((game, key) => (
@@ -57,6 +109,7 @@ export default function Home() {
                             gameTitle={game.name}
                         />
                         {game.name}
+                        {game.price}
                             <button onClick={() => addToCart(game)} > Add to Cart </button>
                         </div>
                     ))

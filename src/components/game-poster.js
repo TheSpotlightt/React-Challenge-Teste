@@ -5,6 +5,6 @@ export default function GamePoster(props) {
     const gameTitle = props.gameTitle;
 
     return (
-        <img src={posterImg} alt={gameTitle}  />
+        <img src={`/assets/${posterImg}`} alt={gameTitle}  />
     )
 }

@@ -22,7 +22,7 @@ export default function Checkout(props) {
             <div>
                 <Link to="#">
                     <span> {itemsCounter} </span>
-                    <img src={'cart-icon.svg'} alt="Cart Icon" onClick={showSidebar} />
+                    <img src={'/assets/cart-icon.svg'} alt="Cart Icon" onClick={showSidebar} />
                 </Link>
             </div>
             <nav className={ sidebar ? 'nav-menu active' : 'nav-menu' }>
