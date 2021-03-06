@@ -3,7 +3,20 @@ import { Link } from 'react-router-dom';
 import GamePoster from './game-poster';
 import * as AiIcons from 'react-icons/ai';
 
-import '../index.css'
+import '../styles/cart.css'
+
+import {
+    Header, 
+    CartImg, 
+    Span, 
+    Title,
+    Paragraph,
+    Ul,
+    List,
+    ParagraphBuyInfos,
+    RemoveFromCartContainer,
+    RemoveFromCartButton
+} from '../styles/cart';
 
 export default function Checkout(props) {
     const [sidebar, setSidebar] = useState(false);
@@ -19,12 +32,13 @@ export default function Checkout(props) {
 
     return cartItems === undefined ? <h1> Loading... </h1> : (
         <div>
-            <div>
+            <Header>
+                <Span> {itemsCounter} </Span>
                 <Link to="#">
-                    <span> {itemsCounter} </span>
-                    <img src={'/assets/cart-icon.svg'} alt="Cart Icon" onClick={showSidebar} />
+                    <CartImg src={'/assets/cart-icon.svg'} alt="Cart Icon" onClick={showSidebar} />
                 </Link>
-            </div>
+            </Header>
+
             <nav className={ sidebar ? 'nav-menu active' : 'nav-menu' }>
                 <div className='nav-menu-items'>
                     <div className='navbar-toggle' onClick={showSidebar} >
@@ -33,29 +47,31 @@ export default function Checkout(props) {
                         </Link>
                     </div>
 
-                    <h1> Checkout </h1>
+                    <Title> Checkout </Title>
 
                     {
                         cartItems.length === 0 ? (
-                            <div> Cart is empty </div>
+                            <Paragraph> Cart is empty </Paragraph>
                         ) : (
-                            <div> You have {itemsCounter} items in the cart </div>
+                            <Paragraph> You have {itemsCounter} items in the cart </Paragraph>
                         )
                     }
 
                     {
                         cartItems.map((product, key) => (
-                            <ul key={key}>
-                                <li>
-                                    <p> {product.name} </p>
+                            <Ul key={key}>
+                                <List>
+                                    <Paragraph> {product.name} </Paragraph>
                                     <GamePoster
                                         posterImg={product.image}
                                         gameTitle={product.name}
                                     />
-                                    <p> R$ {product.price} x {product.count} </p>
-                                    <button onClick={() => props.removeFromCart(product)}> Remove </button>
-                                </li>
-                            </ul>
+                                    <Paragraph> R$ {product.price} x {product.count} </Paragraph>
+                                    <RemoveFromCartContainer>
+                                        <RemoveFromCartButton onClick={() => props.removeFromCart(product)}> Remove </RemoveFromCartButton>
+                                    </RemoveFromCartContainer>
+                                </List>
+                            </Ul>
                         ))
                     }
 
@@ -63,29 +79,29 @@ export default function Checkout(props) {
                         cartItems.length !== 0 && (
                             <div>
                                 <div>
-                                    <p>
+                                    <ParagraphBuyInfos>
                                         Subtotal: 
                                         R$ {
                                             subtotal
                                         }
-                                    </p>
+                                    </ParagraphBuyInfos>
                                 </div>
 
                                 <div>
-                                    <p>
+                                    <ParagraphBuyInfos>
                                         {
                                             subtotal >= 250 ? 'Frete Grátis' : ` Frete: R$ ${frete}`
                                         }
-                                    </p>
+                                    </ParagraphBuyInfos>
                                 </div>
 
                                 <div>
-                                    <p>
+                                    <ParagraphBuyInfos>
                                         Total:
                                         R$ {
                                             subtotal >= 250 ? subtotal : total
                                         }
-                                    </p>
+                                    </ParagraphBuyInfos>
                                 </div>
                             </div>
                         )

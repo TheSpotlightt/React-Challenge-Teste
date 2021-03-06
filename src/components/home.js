@@ -4,6 +4,15 @@ import GamePoster from './game-poster';
 import Cart from './cart'
 import Filter from './filter';
 
+import { 
+    Header, 
+    ProductsSection, 
+    ProductsContainer, 
+    Paragraph, 
+    AddToCartButton, 
+    AddToCartContainer 
+} from '../styles/home';
+
 export default function Home() {
     const [products, getProducts] = useState([]);
     const [cartItems, getCartItems] = useState([]);
@@ -85,35 +94,40 @@ export default function Home() {
     }
 
     return (
-            <div>
-                <header>
-                    <Filter 
-                        productsCount={products.length}
-                        sortProducts={sort}
-                        sortByPrice={sortByPrice}
-                        sortByPopularity={sortByPopularity}
-                        sortByAlphabeticOrder={sortByAlphabeticOrder}
-                    />
-                    <Cart 
-                        removeFromCart={removeFromCart}
-                        counter={counter}
-                        cartItems={cartItems}
-                    />
-                </header>
-
-                {
-                    products.map((game, key) => (
-                        <div key={key}>
-                        <GamePoster 
-                            posterImg={game.image}
-                            gameTitle={game.name}
-                        />
-                        {game.name}
-                        {game.price}
-                            <button onClick={() => addToCart(game)} > Add to Cart </button>
-                        </div>
-                    ))
-                }
-            </div>
+        <div>
+            <Header>
+                <Filter 
+                    productsCount={products.length}
+                    sortProducts={sort}
+                    sortByPrice={sortByPrice}
+                    sortByPopularity={sortByPopularity}
+                    sortByAlphabeticOrder={sortByAlphabeticOrder}
+                />
+                <Cart 
+                    removeFromCart={removeFromCart}
+                    counter={counter}
+                    cartItems={cartItems}
+                />
+            </Header>
+        <ProductsContainer>
+                <ProductsSection>
+                    {
+                        products.map((game, key) => (
+                            <div key={key}>
+                                <GamePoster 
+                                    posterImg={game.image}
+                                    gameTitle={game.name}
+                                />
+                                <Paragraph>{game.name}</Paragraph>
+                                <Paragraph> R$: {game.price}</Paragraph>
+                                <AddToCartContainer>
+                                    <AddToCartButton onClick={() => addToCart(game)} > Add to Cart </AddToCartButton>
+                                </AddToCartContainer>
+                            </div>
+                        ))
+                    }
+                </ProductsSection>
+        </ProductsContainer>
+        </div>
     );
 }

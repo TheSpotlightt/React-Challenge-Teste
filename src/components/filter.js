@@ -1,41 +1,39 @@
 import React from 'react';
+import { Wrapper, Label, Select } from '../styles/filter';
 
 export default function Filter(props) {
-    const productsCount = props.productsCount;
     const sortProducts = props.sort;
     const sortByPrice = props.sortByPrice;
     const sortByPopularity = props.sortByPopularity;
     const sortByAlphabeticOrder = props.sortByAlphabeticOrder;
 
     return (
-        <div>
-            <div> {productsCount} Products </div>
-
+        <Wrapper>
             <div>
-                <label> preço: </label>
-                <select value={sortProducts} onChange={sortByPrice}>
+                <Label> Preço: </Label>
+                <Select value={sortProducts} onChange={sortByPrice}>
                     <option> Default </option>
                     <option value="lowest"> Menor Preço </option>
                     <option value="highest"> Maior Preço </option>
-                </select>
+                </Select>
             </div>
 
             <div>
-                <label> Popularidade: </label>
-                <select value={sortProducts} onChange={sortByPopularity}>
+                <Label> Popularidade: </Label>
+                <Select value={sortProducts} onChange={sortByPopularity}>
                     <option> Default </option>
                     <option value="highest"> Maior Popularidade </option>
                     <option value="lowest"> Menor Popularidade </option>
-                </select>
+                </Select>
             </div>
 
             <div>
-                <label> Ordem Alfabética: </label>
-                <select value={sortProducts} onChange={sortByAlphabeticOrder}>
+                <Label> Ordem Alfabética: </Label>
+                <Select value={sortProducts} onChange={sortByAlphabeticOrder}>
                     <option> Default </option>
                     <option value="alfabetica"> Ordem Alfabética </option>
-                </select>
+                </Select>
             </div>
-        </div>
+        </Wrapper>
     )
 }
