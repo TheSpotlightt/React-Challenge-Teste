@@ -5,9 +5,14 @@ export const Header = styled.header `
     justify-content: flex-end;
     align-items: center;
 
-    margin-bottom: 3rem;
     align-items: center;
+    margin: 2.5rem 0 3rem 0;
 `;
+
+export const Container = styled.div `
+    position: fixed;
+
+`
 
 export const CartImg = styled.img `
     width: 60%;
@@ -15,13 +20,20 @@ export const CartImg = styled.img `
 
     position: relative;
     bottom: 3rem;
+    @media only screen and (max-width: 800px) {
+        left: 2rem;
+    }
 `;
 
 export const Span = styled.span `
     font-size: 2rem;
     position: relative;
-    bottom: 5.5rem;
-    left: 3rem;
+    bottom: 7.5rem;
+    left: 4rem;
+
+    @media only screen and (max-width: 800px) {
+        left: 6rem;
+    }
 `;
 
 
@@ -71,6 +83,14 @@ export const RemoveFromCartButton = styled.button `
 
     &:hover {
         background-position: 0 100%;
+    }
+
+    @media only screen and (max-width: 700px) {
+        width: 8rem;
+        padding: 1rem;
+
+        outline: none;
+        border: .1rem solid #b3b3b4;
     }
 
 `;

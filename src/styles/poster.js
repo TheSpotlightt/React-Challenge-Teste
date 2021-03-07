@@ -15,4 +15,12 @@ export const Poster = styled.img `
         filter: drop-shadow(30px 10px 4px #454543);
     }
 
+    @media only screen and (max-width: 800px) {
+        &:hover {
+            transform: none;    
+            transition: none;
+            filter: none;
+        }
+    }
+
 `;

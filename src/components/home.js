@@ -82,7 +82,7 @@ export default function Home() {
 
     const sortByAlphabeticOrder = (event) => {
         const value = event.target.value;
-        console.log(value)
+
         const productSorted = products.slice().sort((a, b) => (
             value === 'alfabetica' ? 
             a.name.localeCompare(b.name) :

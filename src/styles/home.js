@@ -10,6 +10,17 @@ export const ProductsSection = styled.div `
     justify-content: space-between;
 
     width: 90%;
+
+    @media only screen and (max-width: 800px) {
+        display: flex;
+        flex-direction: column;
+    }
+
+    @media only screen and (min-width: 1440px) and (max-width: 1711px) {
+        display: flex;
+        justify-content: flex-start;
+        width: 100%;
+    }
 `;
 
 export const ProductsContainer = styled.div `
@@ -44,5 +55,9 @@ export const AddToCartButton = styled.button `
 
     &:hover {
         background-position: 0 100%;
+    }
+
+    @media only screen and (max-width: 800px) {
+        background-image: linear-gradient(rgba(240,192,64,1) 50%, rgba(240,192,64,1) 50%);
     }
 `;

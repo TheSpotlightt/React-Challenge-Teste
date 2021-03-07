@@ -15,14 +15,14 @@ import {
     List,
     ParagraphBuyInfos,
     RemoveFromCartContainer,
-    RemoveFromCartButton
+    RemoveFromCartButton,
+    Container
 } from '../styles/cart';
 
 export default function Checkout(props) {
     const [sidebar, setSidebar] = useState(false);
     const showSidebar = () => setSidebar(!sidebar);
     const cartItems = props.cartItems;
-    console.log(cartItems)
 
     const itemsCounter = props.counter;
 
@@ -33,15 +33,17 @@ export default function Checkout(props) {
     return cartItems === undefined ? <h1> Loading... </h1> : (
         <div>
             <Header>
-                <Span> {itemsCounter} </Span>
-                <Link to="#">
-                    <CartImg src={'/assets/cart-icon.svg'} alt="Cart Icon" onClick={showSidebar} />
-                </Link>
+                <Container>
+                    <Span> {itemsCounter} </Span>
+                    <Link to="#">
+                        <CartImg src={'/assets/cart-icon.svg'} alt="Cart Icon" onClick={showSidebar} />
+                    </Link>
+                </Container>
             </Header>
 
             <nav className={ sidebar ? 'nav-menu active' : 'nav-menu' }>
                 <div className='nav-menu-items'>
-                    <div className='navbar-toggle' onClick={showSidebar} >
+                    <div className='navbar-toggle' onClick={showSidebar}>
                         <Link to='#' className='menu-bars'>
                             <AiIcons.AiOutlineClose />
                         </Link>
