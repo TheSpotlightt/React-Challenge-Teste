@@ -25,6 +25,7 @@ export default function Checkout(props) {
     const cartItems = props.cartItems;
 
     const itemsCounter = props.counter;
+    console.log(cartItems)
 
     const subtotal = cartItems.reduce((accumulator, record) => accumulator + (record.price * record.count), 0)
     const frete = cartItems.reduce((accumulator, record) => accumulator + (record.count * 10 ), 0);
@@ -34,19 +35,17 @@ export default function Checkout(props) {
         <div>
             <Header>
                 <Container>
-                    <Span> {itemsCounter} </Span>
-                    <Link to="#">
-                        <CartImg src={'/assets/cart-icon.svg'} alt="Cart Icon" onClick={showSidebar} />
-                    </Link>
+                    <Span data-testid="counter-test"> {itemsCounter} </Span>
+                    <CartImg src={'/assets/cart-icon.svg'} alt="Cart Icon" onClick={showSidebar} data-testid="click-test" />
                 </Container>
             </Header>
 
             <nav className={ sidebar ? 'nav-menu active' : 'nav-menu' }>
                 <div className='nav-menu-items'>
                     <div className='navbar-toggle' onClick={showSidebar}>
-                        <Link to='#' className='menu-bars'>
+                        <div className='menu-bars'>
                             <AiIcons.AiOutlineClose />
-                        </Link>
+                        </div>
                     </div>
 
                     <Title> Checkout </Title>
@@ -62,15 +61,15 @@ export default function Checkout(props) {
                     {
                         cartItems.map((product, key) => (
                             <Ul key={key}>
-                                <List>
-                                    <Paragraph> {product.name} </Paragraph>
+                                <List data-testid="list-test">
+                                    <Paragraph data-testid="product-name"> {product.name} </Paragraph>
                                     <GamePoster
                                         posterImg={product.image}
                                         gameTitle={product.name}
                                     />
-                                    <Paragraph> R$ {product.price} x {product.count} </Paragraph>
+                                    <Paragraph data-testid="product-price"> R$ {product.price} x {product.count} </Paragraph>
                                     <RemoveFromCartContainer>
-                                        <RemoveFromCartButton onClick={() => props.removeFromCart(product)}> Remove </RemoveFromCartButton>
+                                        <RemoveFromCartButton onClick={() => props.removeFromCart(product)} data-testid="remove-product" > Remove </RemoveFromCartButton>
                                     </RemoveFromCartContainer>
                                 </List>
                             </Ul>

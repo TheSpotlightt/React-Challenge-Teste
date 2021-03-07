@@ -20,6 +20,8 @@ export const CartImg = styled.img `
 
     position: relative;
     bottom: 3rem;
+    cursor: pointer;
+
     @media only screen and (max-width: 800px) {
         left: 2rem;
     }

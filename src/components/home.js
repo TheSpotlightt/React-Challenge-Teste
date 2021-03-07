@@ -121,7 +121,7 @@ export default function Home() {
                                 <Paragraph>{game.name}</Paragraph>
                                 <Paragraph> R$: {game.price}</Paragraph>
                                 <AddToCartContainer>
-                                    <AddToCartButton onClick={() => addToCart(game)} > Add to Cart </AddToCartButton>
+                                    <AddToCartButton onClick={() => addToCart(game)} data-testid="add-product"> Add to Cart </AddToCartButton>
                                 </AddToCartContainer>
                             </div>
                         ))
