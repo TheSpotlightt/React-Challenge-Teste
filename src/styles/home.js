@@ -16,7 +16,7 @@ export const ProductsSection = styled.div `
         flex-direction: column;
     }
 
-    @media only screen and (min-width: 1440px) and (max-width: 1711px) {
+    @media only screen and (min-width: 1241px) and (max-width: 1711px) {
         display: flex;
         justify-content: flex-start;
         width: 100%;
