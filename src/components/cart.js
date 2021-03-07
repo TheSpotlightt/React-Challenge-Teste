@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import GamePoster from './game-poster';
 import * as AiIcons from 'react-icons/ai';
 
