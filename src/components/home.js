@@ -1,19 +1,12 @@
 import React, { useState, useEffect } from 'react';
 
-import GamePoster from './game-poster';
 import Cart from './cart'
 import Filter from './filter';
+import Fetch from '../fetch'
 
-import { 
-    Header, 
-    ProductsSection, 
-    ProductsContainer, 
-    Paragraph, 
-    AddToCartButton, 
-    AddToCartContainer 
-} from '../styles/home';
+import { Header, Title } from '../styles/home';
 
-export default function Home() {
+export default function Home(props) {
     const [products, getProducts] = useState([]);
     const [cartItems, getCartItems] = useState([]);
     const [counter, setCounter] = useState(0);
@@ -43,7 +36,7 @@ export default function Home() {
 
         setCounter(cartItems.length);
     }
-    
+
     const removeFromCart = (product) => {
         const cartItem = cartItems.slice();
         getCartItems(cartItem.filter(x => x.id !== product.id));
@@ -103,31 +96,17 @@ export default function Home() {
                     sortByPopularity={sortByPopularity}
                     sortByAlphabeticOrder={sortByAlphabeticOrder}
                 />
+                <Title> Game Store </Title>
                 <Cart 
                     removeFromCart={removeFromCart}
                     counter={counter}
                     cartItems={cartItems}
                 />
             </Header>
-        <ProductsContainer>
-                <ProductsSection>
-                    {
-                        products.map((game, key) => (
-                            <div key={key}>
-                                <GamePoster 
-                                    posterImg={game.image}
-                                    gameTitle={game.name}
-                                />
-                                <Paragraph>{game.name}</Paragraph>
-                                <Paragraph> R$: {game.price}</Paragraph>
-                                <AddToCartContainer>
-                                    <AddToCartButton onClick={() => addToCart(game)} data-testid="add-product"> Add to Cart </AddToCartButton>
-                                </AddToCartContainer>
-                            </div>
-                        ))
-                    }
-                </ProductsSection>
-        </ProductsContainer>
+            <Fetch 
+                products={products}
+                addToCart={addToCart}
+            />
         </div>
     );
 }

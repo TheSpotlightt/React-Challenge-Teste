@@ -19,22 +19,25 @@ export const CartImg = styled.img `
     height: 60%;
 
     position: relative;
-    bottom: 3rem;
+    bottom: 3.5rem;
     cursor: pointer;
 
     @media only screen and (max-width: 800px) {
         left: 2rem;
+        bottom: 5rem;
     }
 `;
 
 export const Span = styled.span `
     font-size: 2rem;
     position: relative;
-    bottom: 7.5rem;
+    bottom: 8rem;
     left: 4rem;
 
     @media only screen and (max-width: 800px) {
         left: 6rem;
+        bottom: 9.5rem;
+
     }
 `;
 

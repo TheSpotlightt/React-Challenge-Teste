@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div `
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
     align-items: center;
     margin-top: 5rem;
 
@@ -19,11 +17,13 @@ export const Label = styled.label `
 export const MenuLabel = styled.label`
     background-color: #F0F0F0;
     position: fixed;
-    top: 1rem;
+    top: 3rem;
     left: 3rem;
+
     border-radius: 50%;
     height: 5rem;
     width: 5rem;
+
     cursor: pointer;
     z-index: 1000;
     box-shadow: 0 1rem 3rem rgba(240, 240, 240, 0.3);
@@ -40,14 +40,15 @@ export const Container = styled.div `
 
     margin-top: 5rem;
     background-color: #d6d6d6;
-    width: 25rem;;
+    width: 25rem;
     height: 50vh;
+    
     position: fixed;
     top: 10;
     z-index: 1;
 
     @media only screen and (max-width: 800px) {
-        position: absolute;
+        position: fixed;
         right: 1rem;
         width: 95vw;
     }

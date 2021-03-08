@@ -2,6 +2,14 @@ import styled from 'styled-components';
 
 export const Header = styled.header `
     margin-top: 3rem;
+
+    border-bottom: .1rem solid grey;
+`;
+
+export const Title = styled.h1 `
+    font-size: 1.7rem;
+    text-align: center;
+
 `;
 
 export const ProductsSection = styled.div `

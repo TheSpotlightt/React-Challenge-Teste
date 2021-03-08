@@ -24,13 +24,12 @@ export default function Checkout(props) {
     const cartItems = props.cartItems;
 
     const itemsCounter = props.counter;
-    console.log(cartItems)
 
     const subtotal = cartItems.reduce((accumulator, record) => accumulator + (record.price * record.count), 0)
     const frete = cartItems.reduce((accumulator, record) => accumulator + (record.count * 10 ), 0);
     const total = cartItems.reduce((accumulator, record) => accumulator + ( record.price * record.count + 10), 0);
 
-    return cartItems === undefined ? <h1> Loading... </h1> : (
+    return (
         <div>
             <Header>
                 <Container>
